@@ -1,0 +1,40 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { id: "cyberpunk-2077" } },
+    { params: { id: "ghost-of-tsushima" } },
+    { params: { id: "the-last-of-us-2" } }
+  ];
+}
+
+const { id } = Astro.params;
+
+const juegos = {
+  "cyberpunk-2077": {
+    nombre: "Cyberpunk 2077",
+    descripcion: "Un RPG futurista en Night City.",
+    imagen: "/src/assets/Punk.jpg"
+  },
+  "ghost-of-tsushima": {
+    nombre: "Ghost of Tsushima",
+    descripcion: "Samuráis defendiendo Japón.",
+    imagen: "/src/assets/Ghost.jpeg"
+  },
+  "the-last-of-us-2": {
+    nombre: "The Last of Us Part II",
+    descripcion: "Una historia intensa de supervivencia.",
+    imagen: "/src/assets/Portada_Parte_II_limpia.webp"
+  }
+};
+
+const juego = juegos[id as keyof typeof juegos];    
+if (!juego) {
+  return Astro.redirect("/");
+}
+---
+
+<h1>{juego.nombre}</h1>
+<img src={juego.imagen} alt="" />
+<p>{juego.descripcion}</p>
+
+<a href="/">⬅ Volver</a>

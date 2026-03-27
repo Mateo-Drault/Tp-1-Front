@@ -32,29 +32,29 @@ import Layout from '../layouts/Layout.astro';
 	
 		<main>
 			<div class="game-container">
-				<div class="game">
-					<img src="/src/assets/Portada_Parte_II_limpia.webp" alt="Juego 1">
+
+				<a href="/juegos/the-last-of-us-2" class="game">
+					<img src="/src/assets/Portada_Parte_II_limpia.webp" alt="">
 					<h2>The Last of Us Part II</h2>
-				</div>
-				<div class="game">
-					<img src="/src/assets/Ghost.jpeg" alt="Juego 2">
+				</a>
+
+				<a href="/juegos/ghost-of-tsushima" class="game">
+					<img src="/src/assets/Ghost.jpeg" alt="">
 					<h2>Ghost of Tsushima</h2>
-				</div>
-				<div class="game">
-					<img src="/src/assets/Punk.jpg" alt="Juego 3">
+				</a>
+
+				<a href="/juegos/cyberpunk-2077" class="game">
+					<img src="/src/assets/Punk.jpg" alt="">
 					<h2>Cyberpunk 2077</h2>
-				</div>
-				<div class="game">
-					<img src="/src/assets/Final.webp" alt="Juego 4">
+				</a>
+
+				<a href="/juegos/final-fantasy-7" class="game">
+					<img src="/src/assets/Final.webp" alt="">
 					<h2>Final Fantasy VII Remake</h2>
-				</div>
-				<!-- Puedes agregar más juegos aquí -->
+				</a>
+
 			</div>
 		</main>
-	
-		<footer>
-			<p>&copy; 2023 Catálogo de Videojuegos. Todos los derechos reservados.</p>
-		</footer>
 	</body>
 	</html>
 	
@@ -64,52 +64,70 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
 	body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
+				font-family: system-ui, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #14181c;
+				color: #d8e0e8;
+			}
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
+			header {
+				background: #0d1117;
+				color: #fff;
+				padding: 15px;
+				text-align: center;
+				border-bottom: 1px solid #222;
+			}
 
-main {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-}
+			main {
+				max-width: 1200px;
+				margin: 20px auto;
+				padding: 10px;
+			}
 
-.game-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
+			.game-container {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+				gap: 14px;
+			}
 
-.game {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    padding: 10px;
-}
+			.game {
+				position: relative;
+				cursor: pointer;	
+			}
 
-.game img {
-    width: 100%;
-    height: 400px; /* elegí el alto que quieras */
-    object-fit: cover;
-    border-radius: 5px;
-}
+			.game img {
+				width: 100%;
+				height: 240px;
+				object-fit: cover;
+				border-radius: 6px;
+				transition: transform 0.25s ease, box-shadow 0.25s ease;
+			}
 
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background: #333;
-    color: #fff;
-}
+			/* HOVER tipo Letterboxd */
+			.game:hover img {
+				transform: scale(1.06);
+				box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+				outline: 2px solid #0077ff;
+			}
+
+			/* TÍTULO overlay */
+			.game h2 {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				margin: 0;
+				padding: 8px;
+				font-size: 13px;
+				background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+				opacity: 0;
+				transition: opacity 0.2s;
+			}
+
+			.game:hover h2 {
+				opacity: 1;
+			}
+
 
 </style>
 	  </section>
