@@ -8,34 +8,123 @@ export function getStaticPaths() {
   ];
 }
 
-const { id } = Astro.params;
-
 const juegos = {
   "cyberpunk-2077": {
     nombre: "Cyberpunk 2077",
     descripcion: "Un RPG futurista en Night City.",
-    imagen: "/src/assets/Punk.jpg"
+    imagen: "/Punk.jpg"
   },
   "ghost-of-tsushima": {
     nombre: "Ghost of Tsushima",
     descripcion: "Samuráis defendiendo Japón.",
-    imagen: "/src/assets/Ghost.jpeg"
+    imagen: "/Ghost.jpeg"
   },
   "the-last-of-us-2": {
     nombre: "The Last of Us Part II",
     descripcion: "Una historia intensa de supervivencia.",
-    imagen: "/src/assets/Portada_Parte_II_limpia.webp"
+    imagen: "/Portada_Parte_II_limpia.webp"
+  },
+  "final-fantasy-7": {
+    nombre: "Final Fantasy VII Remake",
+    descripcion: "Una reinterpretación del clásico RPG.",
+    imagen: "/Final.webp"
   }
-};
+} as const;
 
-const juego = juegos[id as keyof typeof juegos];    
-if (!juego) {
-  return Astro.redirect("/");
-}
+const { id } = Astro.params as { id: keyof typeof juegos };
+const juego = juegos[id];
+
+if (!juego) return Astro.redirect("/");
 ---
 
-<h1>{juego.nombre}</h1>
-<img src={juego.imagen} alt="" />
-<p>{juego.descripcion}</p>
+<!-- 🔥 HERO GRANDE -->
+<section class="hero" style={`background-image: url(${juego.imagen})`}>
+  <div class="gradient"></div>
+</section>
 
-<a href="/">⬅ Volver</a>
+<section class="content">
+  <div class="wrapper">
+    <img class="poster" src={juego.imagen} />
+
+    <div class="info">
+      <h1>{juego.nombre}</h1>
+      <p>{juego.descripcion}</p>
+    </div>
+  </div>
+
+  <div class="extra">
+    <h2>Más información</h2>
+    <p>Acá va todo lo scrolleable...</p>
+
+    <a href="/">⬅ Volver</a>
+  </div>
+</section>
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #14181c;
+  color: #d8e0e8;
+}
+
+/* 🔥 HERO GRANDE */
+.hero {
+  position: relative;
+  height: 80vh; /* 👈 más alto */
+  min-height: 500px; /* 👈 evita que se achique demasiado */
+  background-size: cover;
+  background-position: center;
+}
+
+/* 🔥 DEGRADADO REAL */
+.gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    /* izquierda oscura */
+    linear-gradient(to right, #14181c 15%, rgba(20,24,28,0.6) 35%, transparent 60%),
+
+    /* derecha suave (esto te faltaba 👈) */
+    linear-gradient(to left, rgba(20,24,28,0.5) 0%, transparent 40%),
+
+    /* abajo fuerte */
+    linear-gradient(to bottom, transparent 50%, #14181c 95%);
+}
+
+/* 🔥 CONTENIDO */
+.content {
+  max-width: 1100px;
+  margin: -120px auto 0; /* 👈 SUBE el contenido */
+  padding: 20px;
+}
+
+/* 🔥 WRAPPER poster + texto */
+.wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+}
+
+/* POSTER */
+.poster {
+  width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+}
+
+/* INFO */
+.info h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.info p {
+  opacity: 0.85;
+  max-width: 500px;
+}
+
+/* EXTRA (scroll) */
+.extra {
+  margin-top: 40px;
+}
+</style>
