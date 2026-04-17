@@ -4,127 +4,742 @@ export function getStaticPaths() {
     { params: { id: "cyberpunk-2077" } },
     { params: { id: "ghost-of-tsushima" } },
     { params: { id: "the-last-of-us-2" } },
-    { params: { id: "final-fantasy-7" } }
+    { params: { id: "final-fantasy-7" } },
+    { params: { id: "kerbal" } },
+    { params: { id: "rdr2" } },
+    { params: { id: "hollow-knight" } },
+    { params: { id: "silksong" } },
+    { params: { id: "stardew" } },
+    { params: { id: "isaac" } },
+    { params: { id: "balatro" } },
+    { params: { id: "gow" } },
+    { params: { id: "witcher3" } },
+    { params: { id: "sekiro" } },
+    { params: { id: "ds3" } },
+    { params: { id: "elden-ring" } },
+    { params: { id: "re4" } },
+    { params: { id: "skyrim" } },
+    { params: { id: "cuphead" } },
+    { params: { id: "slay" } },
+    { params: { id: "gungeon" } },
+    { params: { id: "celeste" } },
+    { params: { id: "stanley" } },
+    { params: { id: "deep-rock" } },
+    { params: { id: "darkest" } },
+    { params: { id: "doom" } },
+    { params: { id: "fortnite" } },
+    { params: { id: "slime" } },
+    { params: { id: "subnautica" } },
+    { params: { id: "brotato" } },
+    { params: { id: "minecraft" } },
+    { params: { id: "roblox" } },
+    { params: { id: "disco" } },
+    { params: { id: "hotline" } },
+    { params: { id: "jumpking" } },
+    { params: { id: "baldurs" } },
+    { params: { id: "ittakestwo" } },
+    { params: { id: "overwatch2" } },
+    { params: { id: "zelda" } },
+    { params: { id: "astrobot" } }
   ];
 }
 
 const juegos = {
   "cyberpunk-2077": {
     nombre: "Cyberpunk 2077",
-    descripcion: "Un RPG futurista en Night City.",
-    imagen: "/Punk.jpg"
+    anio: 2020,
+    desarrollador: "CD Projekt Red",
+    descripcion: "En el futuro distópico de Night City, V —un mercenario sin escrúpulos— se embarca en una misión para obtener un implante único capaz de otorgar la inmortalidad. Pero cuando todo sale mal, V debe sobrevivir en una megalópolis dominada por megacorporaciones, donde la línea entre humano y máquina se ha borrado para siempre.",
+    imagen: "/Punk.jpg",
+    rating: 3.9,
+    generos: ["RPG", "Acción", "Mundo Abierto"],
+    plataformas: ["PC", "PS5", "Xbox Series X"]
   },
   "ghost-of-tsushima": {
     nombre: "Ghost of Tsushima",
-    descripcion: "Samuráis defendiendo Japón.",
-    imagen: "/Ghost.jpeg"
+    anio: 2020,
+    desarrollador: "Sucker Punch Productions",
+    descripcion: "El año es 1274. La isla de Tsushima cae ante el ejército mongol. Jin Sakai, uno de los últimos samuráis, debe elegir entre el honor del bushido y convertirse en algo que el Japón feudal jamás ha visto: un fantasma que opera desde las sombras. Una oda visual al cine de samurái clásico.",
+    imagen: "/Ghost.jpeg",
+    rating: 4.2,
+    generos: ["Acción", "Aventura", "Mundo Abierto"],
+    plataformas: ["PS4", "PS5"]
   },
   "the-last-of-us-2": {
     nombre: "The Last of Us Part II",
-    descripcion: "Una historia intensa de supervivencia.",
-    imagen: "/Portada_Parte_II_limpia.webp"
+    anio: 2020,
+    desarrollador: "Naughty Dog",
+    descripcion: "Cinco años después de los eventos de The Last of Us, Ellie vive en relativa paz en Jackson, Wyoming. Pero cuando una tragedia violenta interrumpe esa paz, Ellie emprende un viaje implacable hacia Seattle en busca de justicia. Un relato brutal y poético sobre el ciclo sin fin del odio y la venganza.",
+    imagen: "/Portada_Parte_II_limpia.webp",
+    rating: 4.1,
+    generos: ["Acción", "Aventura", "Survival Horror"],
+    plataformas: ["PS4", "PS5"]
   },
   "final-fantasy-7": {
     nombre: "Final Fantasy VII Remake",
-    descripcion: "Una reinterpretación del clásico RPG.",
-    imagen: "/Final.webp"
-  }
+    anio: 2020,
+    desarrollador: "Square Enix",
+    descripcion: "Una reimaginación monumental del RPG más icónico de todos los tiempos. Cloud Strife, un ex-soldado convertido en mercenario, se une al grupo eco-terrorista AVALANCHE para combatir a la megacorporación Shinra. Pero en las calles de Midgar, nada es lo que parece, y el destino tiene otros planes.",
+    imagen: "/Final.webp",
+    rating: 4.0,
+    generos: ["JRPG", "Acción", "Fantasía"],
+    plataformas: ["PS4", "PS5", "PC"]
+  },
+  "kerbal": { nombre: "Kerbal Space Program", anio: 2015, desarrollador: "Squad", descripcion: "Simulador espacial con física realista.", imagen: "/kerbal.avif", rating: 4.2, generos: ["Simulación"], plataformas: ["PC"] },
+
+  "rdr2": { nombre: "Red Dead Redemption 2", anio: 2018, desarrollador: "Rockstar", descripcion: "Historia de forajidos en el viejo oeste.", imagen: "/reddead.avif", rating: 4.9, generos: ["Acción"], plataformas: ["PC","PS","Xbox"] },
+
+  "hollow-knight": { nombre: "Hollow Knight", anio: 2017, desarrollador: "Team Cherry", descripcion: "Metroidvania oscuro y desafiante.", imagen: "/hollow.jpg", rating: 4.8, generos: ["Metroidvania"], plataformas: ["PC","Switch"] },
+
+  "silksong": { nombre: "Hollow Knight: Silksong", anio: 2025, desarrollador: "Team Cherry", descripcion: "Secuela esperada con Hornet.", imagen: "/silksong.jpg", rating: 4.7, generos: ["Metroidvania"], plataformas: ["PC"] },
+
+  "stardew": { nombre: "Stardew Valley", anio: 2016, desarrollador: "ConcernedApe", descripcion: "Simulador de granja relajante.", imagen: "/stardew.png", rating: 4.7, generos: ["Simulación"], plataformas: ["PC","Switch"] },
+
+  "isaac": { nombre: "The Binding of Isaac", anio: 2011, desarrollador: "Edmund McMillen", descripcion: "Roguelike oscuro y caótico.", imagen: "/isaac.jpg", rating: 4.6, generos: ["Roguelike"], plataformas: ["PC"] },
+
+  "balatro": { nombre: "Balatro", anio: 2024, desarrollador: "LocalThunk", descripcion: "Roguelike de cartas basado en poker.", imagen: "/bala.jpg", rating: 4.5, generos: ["Cartas"], plataformas: ["PC"] },
+
+  "gow": { nombre: "God of War (2018)", anio: 2018, desarrollador: "Santa Monica", descripcion: "Aventura de Kratos en la mitología nórdica.", imagen: "/god.avif", rating: 4.8, generos: ["Acción"], plataformas: ["PS","PC"] },
+
+  "witcher3": { nombre: "The Witcher 3", anio: 2015, desarrollador: "CD Projekt", descripcion: "RPG de mundo abierto con historia profunda.", imagen: "/witcher.jpg", rating: 5.0, generos: ["RPG"], plataformas: ["PC","PS","Xbox"] },
+
+  "sekiro": { nombre: "Sekiro", anio: 2019, desarrollador: "FromSoftware", descripcion: "Acción desafiante con combate de precisión.", imagen: "/sekiro.jpg", rating: 4.8, generos: ["Acción"], plataformas: ["PC","PS","Xbox"] },
+
+  "ds3": { nombre: "Dark Souls 3", anio: 2016, desarrollador: "FromSoftware", descripcion: "RPG oscuro y desafiante.", imagen: "/dark.webp", rating: 4.7, generos: ["RPG"], plataformas: ["PC","PS","Xbox"] },
+
+  "elden-ring": { nombre: "Elden Ring", anio: 2022, desarrollador: "FromSoftware", descripcion: "Soulslike de mundo abierto.", imagen: "/elden.avif", rating: 5.0, generos: ["RPG"], plataformas: ["PC","PS","Xbox"] },
+
+  "re4": { nombre: "Resident Evil 4 Remake", anio: 2023, desarrollador: "Capcom", descripcion: "Remake moderno del clásico survival.", imagen: "/re4.jpg", rating: 4.8, generos: ["Survival"], plataformas: ["PC","PS"] },
+
+  "skyrim": { nombre: "Skyrim", anio: 2011, desarrollador: "Bethesda", descripcion: "RPG abierto lleno de libertad.", imagen: "/skyrim.png", rating: 4.7, generos: ["RPG"], plataformas: ["Todos"] },
+
+  "cuphead": { nombre: "Cuphead", anio: 2017, desarrollador: "Studio MDHR", descripcion: "Run & gun con estética animada.", imagen: "/cuphead.jpg", rating: 4.6, generos: ["Acción"], plataformas: ["PC","Xbox"] },
+
+  "slay": { nombre: "Slay the Spire", anio: 2019, desarrollador: "MegaCrit", descripcion: "Roguelike de cartas estratégico.", imagen: "/slay.avif", rating: 4.7, generos: ["Cartas"], plataformas: ["PC"] },
+
+  "gungeon": { nombre: "Enter the Gungeon", anio: 2016, desarrollador: "Dodge Roll", descripcion: "Roguelike de disparos frenético.", imagen: "/enter.jpg", rating: 4.5, generos: ["Roguelike"], plataformas: ["PC"] },
+
+  "celeste": { nombre: "Celeste", anio: 2018, desarrollador: "Maddy Makes Games", descripcion: "Plataformas preciso y emotivo.", imagen: "/celeste.avif", rating: 4.9, generos: ["Plataformas"], plataformas: ["PC","Switch"] },
+
+  "stanley": { nombre: "The Stanley Parable", anio: 2013, desarrollador: "Galactic Cafe", descripcion: "Narrativa interactiva única.", imagen: "/stanley.jpg", rating: 4.5, generos: ["Narrativo"], plataformas: ["PC"] },
+
+  "deep-rock": { nombre: "Deep Rock Galactic", anio: 2020, desarrollador: "Ghost Ship", descripcion: "Coop de minería espacial.", imagen: "/deep.rock", rating: 4.6, generos: ["Coop"], plataformas: ["PC"] },
+
+  "darkest": { nombre: "Darkest Dungeon", anio: 2016, desarrollador: "Red Hook", descripcion: "RPG oscuro con estrés y estrategia.", imagen: "/dark.jpg", rating: 4.5, generos: ["RPG"], plataformas: ["PC"] },
+
+  "doom": { nombre: "DOOM Eternal", anio: 2020, desarrollador: "id Software", descripcion: "Shooter rápido y agresivo.", imagen: "/doom.avif", rating: 4.7, generos: ["FPS"], plataformas: ["PC"] },
+
+  "fortnite": { nombre: "Fortnite", anio: 2017, desarrollador: "Epic Games", descripcion: "Battle royale popular.", imagen: "/fortnite.jpg", rating: 3.8, generos: ["Battle Royale"], plataformas: ["Todos"] },
+
+  "slime": { nombre: "Slime Rancher", anio: 2017, desarrollador: "Monomi Park", descripcion: "Simulador colorido de slimes.", imagen: "/slime.png", rating: 4.4, generos: ["Simulación"], plataformas: ["PC"] },
+
+  "subnautica": { nombre: "Subnautica", anio: 2018, desarrollador: "Unknown Worlds", descripcion: "Supervivencia submarina.", imagen: "/subnautica.webp", rating: 4.8, generos: ["Survival"], plataformas: ["PC"] },
+
+  "brotato": { nombre: "Brotato", anio: 2023, desarrollador: "Blobfish", descripcion: "Survival shooter caótico.", imagen: "/brotato.jpg", rating: 4.3, generos: ["Roguelike"], plataformas: ["PC"] },
+
+  "minecraft": { nombre: "Minecraft", anio: 2011, desarrollador: "Mojang", descripcion: "Sandbox infinito.", imagen: "/minecraft.jpg", rating: 5.0, generos: ["Sandbox"], plataformas: ["Todos"] },
+
+  "roblox": { nombre: "Roblox", anio: 2006, desarrollador: "Roblox Corp", descripcion: "Plataforma de juegos creados por usuarios.", imagen: "/roblox.jpg", rating: 3.5, generos: ["Sandbox"], plataformas: ["Todos"] },
+
+  "disco": { nombre: "Disco Elysium", anio: 2019, desarrollador: "ZA/UM", descripcion: "RPG narrativo profundo.", imagen: "/disco.webp", rating: 5.0, generos: ["RPG"], plataformas: ["PC"] },
+
+  "hotline": { nombre: "Hotline Miami", anio: 2012, desarrollador: "Dennaton", descripcion: "Acción violenta y rápida.", imagen: "/hotline.jpg", rating: 4.6, generos: ["Acción"], plataformas: ["PC"] },
+
+  "jumpking": { nombre: "Jump King", anio: 2019, desarrollador: "Nexile", descripcion: "Plataformas extremadamente difícil.", imagen: "/jump.webp", rating: 4.0, generos: ["Plataformas"], plataformas: ["PC"] },
+
+  "baldurs": { nombre: "Baldur's Gate 3", anio: 2023, desarrollador: "Larian", descripcion: "RPG basado en decisiones.", imagen: "/baldur.jpeg", rating: 5.0, generos: ["RPG"], plataformas: ["PC","PS5"] },
+
+  "ittakestwo": { nombre: "It Takes Two", anio: 2021, desarrollador: "Hazelight", descripcion: "Aventura cooperativa.", imagen: "/ittakes.webp", rating: 4.7, generos: ["Coop"], plataformas: ["PC","PS"] },
+
+  "overwatch2": { nombre: "Overwatch 2", anio: 2022, desarrollador: "Blizzard", descripcion: "Hero shooter competitivo.", imagen: "/ow2.jpg", rating: 3.7, generos: ["FPS"], plataformas: ["PC"] },
+
+  "zelda": { nombre: "Zelda: Breath of the Wild", anio: 2017, desarrollador: "Nintendo", descripcion: "Exploración libre en mundo abierto.", imagen: "/botw.jpg", rating: 4.9, generos: ["Aventura"], plataformas: ["Switch"] },
+
+  "astrobot": { nombre: "Astro Bot", anio: 2024, desarrollador: "Team Asobi", descripcion: "Plataformas creativo y divertido.", imagen: "/astro.avif", rating: 4.6, generos: ["Plataformas"], plataformas: ["PS5"] }
 } as const;
 
 const { id } = Astro.params as { id: keyof typeof juegos };
 const juego = juegos[id];
 
 if (!juego) return Astro.redirect("/");
+
+// Generamos la distribución del histograma (simulada pero coherente con el rating)
+const baseRating = juego.rating;
+function getRatingDistribution(avg: number) {
+  // Distribución gaussiana simulada centrada en avg
+  const bars = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+  return bars.map(star => {
+    const diff = Math.abs(star - avg);
+    const height = Math.max(4, Math.round(80 * Math.exp(-(diff * diff) / 0.6)));
+    return { star, height };
+  });
+}
+const distribution = getRatingDistribution(baseRating);
+const totalRatings = "197K";
+const totalFans = "42K";
 ---
 
-<!-- 🔥 HERO GRANDE -->
-<section class="hero" style={`background-image: url(${juego.imagen})`}>
-  <div class="gradient"></div>
-</section>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{juego.nombre} — Checkpoint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
 
-<section class="content">
-  <div class="wrapper">
-    <img class="poster" src={juego.imagen} />
+  <!-- ───── NAVBAR ───── -->
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">CHECKPOINT</span>
+    </a>
+  </nav>
 
-    <div class="info">
-      <h1>{juego.nombre}</h1>
-      <p>{juego.descripcion}</p>
+  <!-- ───── HERO ───── -->
+  <div class="hero-wrapper">
+    <div class="hero-bg" style={`background-image: url(${juego.imagen})`}></div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- ───── MAIN CONTENT ───── -->
+  <main class="main-content">
+    <div class="game-card">
+
+      <!-- POSTER -->
+      <div class="poster-col">
+        <div class="poster-wrap">
+          <img class="poster" src={juego.imagen} alt={juego.nombre} />
+        </div>
+        <div class="poster-stats">
+          <span title="Partidas registradas">🎮 2.8M</span>
+          <span title="Reseñas">{totalRatings} reseñas</span>
+          <span title="Fans">♥ {totalFans}</span>
+        </div>
+        <div class="watch-section">
+          <p class="watch-label">DISPONIBLE EN</p>
+          {juego.plataformas.map(p => (
+            <span class="platform-tag">{p}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- INFO CENTRAL -->
+      <div class="info-col">
+        <div class="title-row">
+          <h1 class="game-title">{juego.nombre}</h1>
+          <span class="game-year">{juego.anio}</span>
+        </div>
+        <p class="game-dev">Desarrollado por <a href="#" class="dev-link">{juego.desarrollador}</a></p>
+
+        <p class="game-desc">{juego.descripcion}</p>
+
+        <div class="genres-row">
+          {juego.generos.map(g => (
+            <a href="#" class="genre-tag">{g}</a>
+          ))}
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+          <button class="tab">DETALLES</button>
+        </div>
+      </div>
+
+      <!-- RATING PANEL -->
+      <div class="rating-col">
+        <div class="rating-box">
+          <div class="rating-actions">
+          </div>
+
+          <div class="rating-section">
+            <p class="rating-label">PUNTUACIONES</p>
+            <p class="fans-label">{totalFans} FANS</p>
+          </div>
+
+          <!-- Histograma -->
+          <div class="histogram">
+            {distribution.map(({ star, height }) => (
+              <div class="bar-col">
+                <div
+                  class={`bar ${star <= Math.round(baseRating * 2) / 2 ? 'bar-filled' : 'bar-empty'}`}
+                  style={`height: ${height}px`}
+                ></div>
+              </div>
+            ))}
+          </div>
+
+          <div class="histogram-labels">
+            <span>½</span>
+            <span>5</span>
+          </div>
+
+          <!-- Promedio -->
+          <div class="avg-row">
+            <div class="stars-display">
+              {[1,2,3,4,5].map(s => (
+                <span class={`star ${s <= Math.round(baseRating) ? 'star-on' : 'star-off'}`}>★</span>
+              ))}
+            </div>
+            <span class="avg-number">{baseRating.toFixed(1)}</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </main>
 
-  <div class="extra">
-    <h2>Más información</h2>
-    <p>Acá va todo lo scrolleable...</p>
+</body>
+</html>
 
-    <a href="/">⬅ Volver</a>
-  </div>
-</section>
 <style>
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #14181c;
-  color: #d8e0e8;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* 🔥 HERO GRANDE */
-.hero {
-  position: relative;
-  height: 80vh; /* 👈 más alto */
-  min-height: 500px; /* 👈 evita que se achique demasiado */
-  background-size: cover;
-  background-position: center;
-}
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: rgba(255,255,255,0.07);
+    --text: #cdd9e5;
+    --text-muted: #768390;
+    --accent: #e8c84a;
+    --accent2: #58a6ff;
+    --green: #3fb950;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
 
-/* 🔥 DEGRADADO REAL */
-.gradient {
-  position: absolute;
-  inset: 0;
-  background:
-    /* izquierda oscura */
-    linear-gradient(to right, #14181c 15%, rgba(20,24,28,0.6) 35%, transparent 60%),
+  html { scroll-behavior: smooth; }
 
-    /* derecha suave (esto te faltaba 👈) */
-    linear-gradient(to left, rgba(20,24,28,0.5) 0%, transparent 40%),
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    /* abajo fuerte */
-    linear-gradient(to bottom, transparent 50%, #14181c 95%);
-}
+  /* ── NAVBAR ── */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+    background: rgba(13, 17, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
 
-/* 🔥 CONTENIDO */
-.content {
-  max-width: 1100px;
-  margin: -120px auto 0; /* 👈 SUBE el contenido */
-  padding: 20px;
-}
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    font-size: 20px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    color: #fff;
+  }
 
-/* 🔥 WRAPPER poster + texto */
-.wrapper {
-  display: flex;
-  gap: 30px;
-  align-items: flex-end;
-}
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-/* POSTER */
-.poster {
-  width: 180px;
-  border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-}
+  .nav-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-secondary {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text); }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
 
-/* INFO */
-.info h1 {
-  margin: 0;
-  font-size: 36px;
-}
+  /* ── HERO ── */
+  .hero-wrapper {
+    position: relative;
+    height: 72vh;
+    min-height: 480px;
+    overflow: hidden;
+  }
 
-.info p {
-  opacity: 0.85;
-  max-width: 500px;
-}
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    filter: saturate(0.7) brightness(0.6);
+    transform: scale(1.04);
+    animation: heroZoom 18s ease-out forwards;
+  }
 
-/* EXTRA (scroll) */
-.extra {
-  margin-top: 40px;
-}
+  @keyframes heroZoom {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.00); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right,  #0d1117 0%,  rgba(13,17,23,0.55) 30%, transparent 58%),
+      linear-gradient(to left,   rgba(13,17,23,0.45) 0%, transparent 45%),
+      linear-gradient(to bottom, transparent 38%, rgba(13,17,23,0.85) 72%, #0d1117 100%);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1160px;
+    margin: -180px auto 0;
+    padding: 0 32px 80px;
+    animation: fadeUp 0.6s ease both;
+    animation-delay: 0.1s;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── GAME CARD ── */
+  .game-card {
+    display: grid;
+    grid-template-columns: 200px 1fr 260px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── POSTER COL ── */
+  .poster-wrap {
+    position: relative;
+  }
+  .poster {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+    display: block;
+  }
+
+  .poster-stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .poster-stats span { white-space: nowrap; }
+
+  .watch-section {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .watch-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .platform-tag {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── INFO COL ── */
+  .info-col {
+    padding-top: 12px;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .game-title {
+    font-family: var(--font-display);
+    font-size: 52px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .game-year {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .game-dev {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .dev-link {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+  .dev-link:hover { text-decoration: underline; }
+
+  .game-desc {
+    margin-top: 18px;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--text);
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  .genres-row {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .genre-tag {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .genre-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-top: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── RATING COL ── */
+  .rating-col {
+    padding-top: 12px;
+  }
+
+  .rating-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 16px;
+  }
+
+  .rating-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .action-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+  }
+  .action-btn:hover { opacity: 0.82; }
+  .primary-action {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .secondary-action {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .rating-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .rating-label,
+  .fans-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ── HISTOGRAMA ── */
+  .histogram {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 80px;
+    padding: 0 2px;
+  }
+  .bar-col {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .bar {
+    width: 100%;
+    max-width: 18px;
+    border-radius: 2px 2px 0 0;
+    transition: height 0.4s ease;
+  }
+  .bar-filled {
+    background: linear-gradient(to top, var(--accent), rgba(232,200,74,0.55));
+  }
+  .bar-empty {
+    background: var(--surface2);
+  }
+
+  .histogram-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    padding: 0 2px;
+  }
+
+  /* ── PROMEDIO ── */
+  .avg-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .stars-display {
+    display: flex;
+    gap: 1px;
+  }
+  .star {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .star-on  { color: var(--accent); }
+  .star-off { color: var(--surface2); }
+
+  .avg-number {
+    font-family: var(--font-display);
+    font-size: 34px;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .game-card {
+      grid-template-columns: 160px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .rating-col {
+      grid-column: 1 / -1;
+    }
+    .game-title { font-size: 38px; }
+  }
+
+  @media (max-width: 600px) {
+    .navbar { padding: 0 16px; }
+    .nav-links { display: none; }
+    .main-content { padding: 0 16px 60px; margin-top: -120px; }
+    .game-card {
+      grid-template-columns: 1fr;
+    }
+    .poster-wrap { max-width: 180px; margin: 0 auto; }
+  }
 </style>
