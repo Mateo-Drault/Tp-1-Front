@@ -1,46 +1,86 @@
-# Astro Starter Kit: Basics
+# ◈ Checkpoint
 
-```sh
-npm create astro@latest -- --template basics
+**Autor:** Mateo Drault — 5to E  
+**Materia:** Frontend  
+**Entrega:** TP N°1 — Actividad Diagnóstico
+
+---
+
+## Descripción del proyecto
+
+Checkpoint es un catálogo de videojuegos construido con Astro y React. Permite explorar una colección de títulos, buscar por nombre y ver la página de detalle de cada juego con su descripción, géneros, plataformas y puntuación.
+
+---
+
+## Requisitos de la consigna resueltos
+
+### Requisitos mínimos
+- **1 página principal** — grilla de juegos en la ruta `/`
+- **Al menos 3 secciones** — navbar, grilla de juegos y página de detalle individual por juego (`/juegos/[id]`)
+- **Responsive básico** — layout adaptable con CSS Grid (`auto-fill / minmax`) y media queries para mobile
+- **Comportamiento con JavaScript** — buscador en tiempo real que filtra los juegos por nombre usando estado de React (`useState`)
+
+### Opcionales resueltos (crédito extra)
+- **Componentes reutilizables** — `GameCard` y `Stars` en `GameGrid.jsx`, reutilizados para todos los juegos
+- **Animaciones** — transiciones en hover de las cards, zoom animado en el hero de la página de detalle, slideDown en la navbar
+- **Integración con otras librerías** — React integrado dentro de Astro con directiva `client:load`
+
+---
+
+## Herramientas usadas
+
+- [Astro](https://astro.build/) — framework principal
+- [React](https://react.dev/) — componente interactivo de la grilla y búsqueda
+- [Google Fonts](https://fonts.google.com/) — tipografías Bebas Neue y DM Sans
+- CSS Grid y custom properties (variables CSS)
+- JavaScript vanilla para el comportamiento del buscador
+
+---
+
+## Instrucciones para ejecutarlo
+
+**Requisitos previos:** tener instalado [Node.js](https://nodejs.org/) (versión 18 o superior)
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/tu-usuario/checkpoint.git
+cd checkpoint
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Correr el servidor de desarrollo
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Luego abrir el navegador en `http://localhost:4321`
 
-## 🚀 Project Structure
+### Build para producción
 
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+npm run build
+npm run preview
+```
 
-```text
+---
+
+## Estructura del proyecto
+
+```
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── public/          # Imágenes de los juegos
+├── src/
+│   ├── components/
+│   │   └── GameGrid.jsx     # Grilla + buscador (React)
+│   ├── pages/
+│   │   ├── index.astro      # Página principal
+│   │   └── juegos/
+│   │       └── [id].astro   # Página de detalle dinámica
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## Deploy
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+> Proyecto deployado en: https://tp-1-front-ivo-el-juego.vercel.app/
