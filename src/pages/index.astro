@@ -20,17 +20,32 @@ import GameGrid from '../components/GameGrid.jsx';
       <span class="logo-icon">◈</span>
       <span class="logo-text">CHECKPOINT</span>
     </a>
+      <div class="nav-search">
+    <span class="search-icon">⌕</span>
+    <input
+      type="text"
+      id="nav-search-input"
+      placeholder="Buscar juego..."
+      autocomplete="off"
+    />
+  </div>
     <div class="nav-right">
       <span class="tagline">ivo el juego</span>
     </div>
   </nav>
  
-  <!-- ── GRAIN OVERLAY ── -->
-  <div class="grain"></div>
  
   <!-- ── REACT COMPONENT ── -->
   <GameGrid client:load />
- 
+
+ <script>
+  const input = document.getElementById('nav-search-input');
+  if (input) {
+    input.addEventListener('input', (e) => {
+      window.dispatchEvent(new CustomEvent('checkpoint-search', { detail: e.target.value }));
+    });
+  }
+</script>
 </body>
 </html>
  
@@ -54,17 +69,6 @@ import GameGrid from '../components/GameGrid.jsx';
     overflow-x: hidden;
   }
  
-  /* ── NOISE GRAIN ── */
-  .grain {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    pointer-events: none;
-    opacity: 0.028;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 160px 160px;
-  }
  
   /* ── NAVBAR ── */
   .navbar {
@@ -82,7 +86,36 @@ import GameGrid from '../components/GameGrid.jsx';
     border-bottom: 1px solid var(--border);
     animation: slideDown 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
- 
+  .nav-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .nav-search .search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 17px;
+    color: rgba(200, 215, 225, 0.35);
+  }
+  .nav-search input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 6px;
+    color: #f3f3f3;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 7px 14px 7px 34px;
+    width: 240px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, width 0.3s;
+  }
+  .nav-search input:focus {
+    border-color: rgba(232, 200, 74, 0.45);
+    background: rgba(255,255,255,0.07);
+    width: 900px;
+  }
+
   @keyframes slideDown {
     from { transform: translateY(-100%); opacity: 0; }
     to   { transform: translateY(0);     opacity: 1; }

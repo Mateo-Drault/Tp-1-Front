@@ -163,7 +163,6 @@ const juego = juegos[id];
 
 if (!juego) return Astro.redirect("/");
 
-// Generamos la distribución del histograma (simulada pero coherente con el rating)
 const baseRating = juego.rating;
 function getRatingDistribution(avg: number) {
   // Distribución gaussiana simulada centrada en avg
