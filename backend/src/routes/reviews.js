@@ -1,0 +1,5 @@
+SUPABASE_URL=https://oavwlqhtsumbwqwpbdov.supabase.co
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hdndscWh0c3VtYndxd3BiZG92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDQ3MDUsImV4cCI6MjA5MjYyMDcwNX0.9DCyGlLhtdD_SqhxhfOtGpIQeH6IqkJNjRUaHDuXE7o
+SUPABASE_SERVICE_KEY=tu-service-role-key
+RAWG_API_KEY=tu-rawg-api-key
+PORT=3000
