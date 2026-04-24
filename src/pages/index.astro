@@ -39,12 +39,57 @@ import GameGrid from '../components/GameGrid.jsx';
   <GameGrid client:load />
 
  <script>
-  const input = document.getElementById('nav-search-input');
-  if (input) {
-    input.addEventListener('input', (e) => {
-      window.dispatchEvent(new CustomEvent('checkpoint-search', { detail: e.target.value }));
-    });
-  }
+const input = document.getElementById('nav-search-input')! as HTMLInputElement;
+
+  input.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement;
+    window.dispatchEvent(
+      new CustomEvent('checkpoint-search', { detail: target.value })
+    );
+  });
+
+  // 🔐 AUTH
+
+  const loginBtn = document.getElementById('login-btn')!;
+  const signupBtn = document.getElementById('signup-btn')!;
+
+  const loginDropdown = document.getElementById('login-dropdown')!;
+  const signupModal = document.getElementById('signup-modal')!;
+
+  const closeLogin = document.getElementById('close-login')!;
+  const closeSignup = document.getElementById('close-signup')!;
+
+  // abrir login (dropdown)
+  loginBtn.onclick = () => {
+    loginDropdown.classList.toggle('hidden');
+    signupModal.classList.add('hidden');
+  };
+
+  // abrir signup (modal)
+  signupBtn.onclick = () => {
+    signupModal.classList.remove('hidden');
+    loginDropdown.classList.add('hidden');
+  };
+
+  // cerrar manual
+  closeLogin.onclick = () => loginDropdown.classList.add('hidden');
+  closeSignup.onclick = () => signupModal.classList.add('hidden');
+
+  // cerrar al hacer click afuera
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+
+    if (!loginDropdown.contains(target) && !loginBtn.contains(target)) {
+      loginDropdown.classList.add('hidden');
+    }
+
+    if (
+      !signupModal.querySelector('.modal-box')!.contains(target) &&
+      !signupBtn.contains(target)
+    ) {
+      signupModal.classList.add('hidden');
+    }
+  });
 </script>
 </body>
 </html>
@@ -116,6 +161,119 @@ import GameGrid from '../components/GameGrid.jsx';
     width: 900px;
   }
 
+*/ login */
+.login-dropdown {
+  position: fixed;
+  top: 60px;
+  right: 48px;
+  background: #1c2229;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  z-index: 300;
+  border: 1px solid rgba(255,255,255,0.08);
+  animation: slideDown 0.2s ease;
+}
+
+.login-dropdown input {
+  background: #2a313a;
+  border: none;
+  padding: 6px 8px;
+  color: white;
+  border-radius: 3px;
+  font-size: 12px;
+  width: 140px;
+}
+
+.login-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-actions label {
+  font-size: 11px;
+  color: rgba(200, 215, 225, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.forgot {
+  font-size: 11px;
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.signin-btn {
+  background: #00c030;
+  border: none;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* sign up */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+}
+
+.modal-box {
+  background: #161b22;
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-box h2 {
+  margin-bottom: 10px;
+}
+
+.modal-box input {
+  padding: 8px;
+  background: #0d1117;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+  border-radius: 5px;
+}
+
+.submit-btn {
+  background: #e8c84a;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+*/ cerrar */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.hidden {
+  display: none;
+}
   @keyframes slideDown {
     from { transform: translateY(-100%); opacity: 0; }
     to   { transform: translateY(0);     opacity: 1; }
