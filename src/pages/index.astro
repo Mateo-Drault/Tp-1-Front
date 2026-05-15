@@ -29,15 +29,43 @@ import GameGrid from '../components/GameGrid.jsx';
       autocomplete="off"
     />
   </div>
-    <div class="nav-right">
-      <span class="tagline">ivo el juego</span>
+  <div class="nav-right">
+    <button id="login-btn" class="auth-btn">Iniciar sesión</button>
+    <button id="signup-btn" class="auth-btn outline">Crear cuenta</button>
+  </div>
+
+  <div id="login-dropdown" class="login-dropdown hidden">
+    <span id="close-login" class="close">✕</span>
+
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+
+    <div class="login-actions">
+      <label>
+        <input type="checkbox" />
+        recordame
+      </label>  
+      <button class="signin-btn">SIGN IN</button>
     </div>
+  </div>
   </nav>
  
  
   <!-- ── REACT COMPONENT ── -->
   <GameGrid client:load />
+  <div id="signup-modal" class="modal hidden">
+  <div class="modal-box">
+    <span id="close-signup" class="close">✕</span>
 
+    <h2>Crear cuenta</h2>
+
+    <input type="text" placeholder="Nombre de usuario" />
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Contraseña" />
+
+    <button class="submit-btn">Registrarse</button>
+  </div>
+</div>
  <script>
 const input = document.getElementById('nav-search-input')! as HTMLInputElement;
 
@@ -160,12 +188,17 @@ const input = document.getElementById('nav-search-input')! as HTMLInputElement;
     background: rgba(255,255,255,0.07);
     width: 900px;
   }
+  .nav-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
-*/ login */
+/* login */
 .login-dropdown {
-  position: fixed;
-  top: 60px;
-  right: 48px;
+  position: absolute;
+  top: 42px;
+  right: 90px;
   background: #1c2229;
   padding: 14px;
   display: flex;
@@ -174,7 +207,8 @@ const input = document.getElementById('nav-search-input')! as HTMLInputElement;
   border-radius: 6px;
   z-index: 300;
   border: 1px solid rgba(255,255,255,0.08);
-  animation: slideDown 0.2s ease;
+  animation: fadeDropdown 0.2s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);ase;
 }
 
 .login-dropdown input {
@@ -269,6 +303,23 @@ const input = document.getElementById('nav-search-input')! as HTMLInputElement;
   right: 12px;
   cursor: pointer;
   opacity: 0.6;
+}
+.auth-btn {
+  background: var(--accent);
+  border: none;
+  color: #000;
+  font-size: 12px;
+  padding: 7px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.auth-btn.outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
 }
 
 .hidden {
