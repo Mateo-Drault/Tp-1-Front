@@ -67,8 +67,17 @@ import GameGrid from '../components/GameGrid.jsx';
   </div>
 </div>
  <script>
-const input = document.getElementById('nav-search-input')! as HTMLInputElement;
+  import { register, login, logout, getToken, getUser } from '../utils/auth';
 
+  const input = document.getElementById('nav-search-input') as HTMLInputElement;
+  const loginBtn = document.getElementById('login-btn')!;
+  const signupBtn = document.getElementById('signup-btn')!;
+  const loginDropdown = document.getElementById('login-dropdown')!;
+  const signupModal = document.getElementById('signup-modal')!;
+  const closeLogin = document.getElementById('close-login')!;
+  const closeSignup = document.getElementById('close-signup')!;
+
+  // Search
   input.addEventListener('input', (e) => {
     const target = e.target as HTMLInputElement;
     window.dispatchEvent(
@@ -76,46 +85,63 @@ const input = document.getElementById('nav-search-input')! as HTMLInputElement;
     );
   });
 
-  // 🔐 AUTH
-
-  const loginBtn = document.getElementById('login-btn')!;
-  const signupBtn = document.getElementById('signup-btn')!;
-
-  const loginDropdown = document.getElementById('login-dropdown')!;
-  const signupModal = document.getElementById('signup-modal')!;
-
-  const closeLogin = document.getElementById('close-login')!;
-  const closeSignup = document.getElementById('close-signup')!;
-
-  // abrir login (dropdown)
+  // Auth UI
   loginBtn.onclick = () => {
     loginDropdown.classList.toggle('hidden');
     signupModal.classList.add('hidden');
   };
 
-  // abrir signup (modal)
   signupBtn.onclick = () => {
     signupModal.classList.remove('hidden');
     loginDropdown.classList.add('hidden');
   };
 
-  // cerrar manual
   closeLogin.onclick = () => loginDropdown.classList.add('hidden');
   closeSignup.onclick = () => signupModal.classList.add('hidden');
 
-  // cerrar al hacer click afuera
   document.addEventListener('click', (e) => {
     const target = e.target as Node;
-
     if (!loginDropdown.contains(target) && !loginBtn.contains(target)) {
       loginDropdown.classList.add('hidden');
     }
-
-    if (
-      !signupModal.querySelector('.modal-box')!.contains(target) &&
-      !signupBtn.contains(target)
-    ) {
+    if (!signupModal.querySelector('.modal-box')!.contains(target) && !signupBtn.contains(target)) {
       signupModal.classList.add('hidden');
+    }
+  });
+
+  // Login form
+  const loginForm = loginDropdown.querySelector('input[type="password"]')!.parentElement!;
+  const signinBtn = loginDropdown.querySelector('.signin-btn')!;
+  
+  signinBtn.addEventListener('click', async () => {
+    const email = (loginDropdown.querySelector('input[type="text"]') as HTMLInputElement).value;
+    const password = (loginDropdown.querySelector('input[type="password"]') as HTMLInputElement).value;
+
+    try {
+      await login(email, password);
+      alert('Sesión iniciada');
+      loginDropdown.classList.add('hidden');
+      location.reload();
+    } catch (err) {
+      alert('Error: ' + (err as Error).message);
+    }
+  });
+
+  // Signup form
+  const signupForm = signupModal.querySelector('.modal-box')!;
+  const submitBtn = signupForm.querySelector('.submit-btn')!;
+
+  submitBtn.addEventListener('click', async () => {
+    const inputs = signupForm.querySelectorAll('input');
+    const email = (inputs[1] as HTMLInputElement).value;
+    const password = (inputs[2] as HTMLInputElement).value;
+
+    try {
+      await register(email, password);
+      alert('Cuenta creada. Ahora inicia sesión');
+      signupModal.classList.add('hidden');
+    } catch (err) {
+      alert('Error: ' + (err as Error).message);
     }
   });
 </script>

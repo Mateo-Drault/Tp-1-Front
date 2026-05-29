@@ -1,181 +1,48 @@
 ---
-export function getStaticPaths() {
-  return [
-    { params: { id: "cyberpunk-2077" } },
-    { params: { id: "ghost-of-tsushima" } },
-    { params: { id: "the-last-of-us-2" } },
-    { params: { id: "final-fantasy-7" } },
-    { params: { id: "kerbal" } },
-    { params: { id: "rdr2" } },
-    { params: { id: "hollow-knight" } },
-    { params: { id: "silksong" } },
-    { params: { id: "stardew" } },
-    { params: { id: "isaac" } },
-    { params: { id: "balatro" } },
-    { params: { id: "gow" } },
-    { params: { id: "witcher3" } },
-    { params: { id: "sekiro" } },
-    { params: { id: "ds3" } },
-    { params: { id: "elden-ring" } },
-    { params: { id: "re4" } },
-    { params: { id: "skyrim" } },
-    { params: { id: "cuphead" } },
-    { params: { id: "slay" } },
-    { params: { id: "gungeon" } },
-    { params: { id: "celeste" } },
-    { params: { id: "stanley" } },
-    { params: { id: "deep-rock" } },
-    { params: { id: "darkest" } },
-    { params: { id: "doom" } },
-    { params: { id: "fortnite" } },
-    { params: { id: "slime" } },
-    { params: { id: "subnautica" } },
-    { params: { id: "brotato" } },
-    { params: { id: "minecraft" } },
-    { params: { id: "roblox" } },
-    { params: { id: "disco" } },
-    { params: { id: "hotline" } },
-    { params: { id: "jumpking" } },
-    { params: { id: "baldurs" } },
-    { params: { id: "ittakestwo" } },
-    { params: { id: "overwatch2" } },
-    { params: { id: "zelda" } },
-    { params: { id: "astrobot" } }
-  ];
+import axios from 'axios'
+import Reviews from '../../components/Reviews.jsx'
+---
+
+const API_URL = 'http://localhost:3000/api'
+
+export async function getStaticPaths() {
+  try {
+    const res = await axios.get(`${API_URL}/games`)
+    return res.data.results.map((game) => ({
+      params: { id: game.id.toString() }
+    }))
+  } catch (error) {
+    console.error('Error fetching game IDs:', error)
+    return []
+  }
 }
 
-const juegos = {
-  "cyberpunk-2077": {
-    nombre: "Cyberpunk 2077",
-    anio: 2020,
-    desarrollador: "CD Projekt Red",
-    descripcion: "En el futuro distópico de Night City, V —un mercenario sin escrúpulos— se embarca en una misión para obtener un implante único capaz de otorgar la inmortalidad. Pero cuando todo sale mal, V debe sobrevivir en una megalópolis dominada por megacorporaciones, donde la línea entre humano y máquina se ha borrado para siempre.",
-    imagen: "/Punk.jpg",
-    rating: 3.9,
-    generos: ["RPG", "Acción", "Mundo Abierto"],
-    plataformas: ["PC", "PS5", "Xbox Series X"]
-  },
-  "ghost-of-tsushima": {
-    nombre: "Ghost of Tsushima",
-    anio: 2020,
-    desarrollador: "Sucker Punch Productions",
-    descripcion: "El año es 1274. La isla de Tsushima cae ante el ejército mongol. Jin Sakai, uno de los últimos samuráis, debe elegir entre el honor del bushido y convertirse en algo que el Japón feudal jamás ha visto: un fantasma que opera desde las sombras. Una oda visual al cine de samurái clásico.",
-    imagen: "/Ghost.jpeg",
-    rating: 4.2,
-    generos: ["Acción", "Aventura", "Mundo Abierto"],
-    plataformas: ["PS4", "PS5"]
-  },
-  "the-last-of-us-2": {
-    nombre: "The Last of Us Part II",
-    anio: 2020,
-    desarrollador: "Naughty Dog",
-    descripcion: "Cinco años después de los eventos de The Last of Us, Ellie vive en relativa paz en Jackson, Wyoming. Pero cuando una tragedia violenta interrumpe esa paz, Ellie emprende un viaje implacable hacia Seattle en busca de justicia. Un relato brutal y poético sobre el ciclo sin fin del odio y la venganza.",
-    imagen: "/Portada_Parte_II_limpia.webp",
-    rating: 4.1,
-    generos: ["Acción", "Aventura", "Survival Horror"],
-    plataformas: ["PS4", "PS5"]
-  },
-  "final-fantasy-7": {
-    nombre: "Final Fantasy VII Remake",
-    anio: 2020,
-    desarrollador: "Square Enix",
-    descripcion: "Una reimaginación monumental del RPG más icónico de todos los tiempos. Cloud Strife, un ex-soldado convertido en mercenario, se une al grupo eco-terrorista AVALANCHE para combatir a la megacorporación Shinra. Pero en las calles de Midgar, nada es lo que parece, y el destino tiene otros planes.",
-    imagen: "/Final.webp",
-    rating: 4.0,
-    generos: ["JRPG", "Acción", "Fantasía"],
-    plataformas: ["PS4", "PS5", "PC"]
-  },
-  "kerbal": { nombre: "Kerbal Space Program", anio: 2015, desarrollador: "Squad", descripcion: "Simulador espacial con física realista.", imagen: "/kerbal.avif", rating: 4.2, generos: ["Simulación"], plataformas: ["PC"] },
+const { id } = Astro.params as { id: string }
+let juego = null
+let error = null
 
-  "rdr2": { nombre: "Red Dead Redemption 2", anio: 2018, desarrollador: "Rockstar", descripcion: "Historia de forajidos en el viejo oeste.", imagen: "/reddead.avif", rating: 4.9, generos: ["Acción"], plataformas: ["PC","PS","Xbox"] },
+try {
+  const res = await axios.get(`${API_URL}/games/${id}`)
+  juego = res.data
+} catch (err) {
+  error = err.message
+  return Astro.redirect('/')
+}
 
-  "hollow-knight": { nombre: "Hollow Knight", anio: 2017, desarrollador: "Team Cherry", descripcion: "Metroidvania oscuro y desafiante.", imagen: "/hollow.jpg", rating: 4.8, generos: ["Metroidvania"], plataformas: ["PC","Switch"] },
+if (!juego) return Astro.redirect('/')
 
-  "silksong": { nombre: "Hollow Knight: Silksong", anio: 2025, desarrollador: "Team Cherry", descripcion: "Secuela esperada con Hornet.", imagen: "/silksong.jpg", rating: 4.7, generos: ["Metroidvania"], plataformas: ["PC"] },
+const baseRating = juego.rating || 3.5
 
-  "stardew": { nombre: "Stardew Valley", anio: 2016, desarrollador: "ConcernedApe", descripcion: "Simulador de granja relajante.", imagen: "/stardew.png", rating: 4.7, generos: ["Simulación"], plataformas: ["PC","Switch"] },
-
-  "isaac": { nombre: "The Binding of Isaac", anio: 2011, desarrollador: "Edmund McMillen", descripcion: "Roguelike oscuro y caótico.", imagen: "/isaac.jpg", rating: 4.6, generos: ["Roguelike"], plataformas: ["PC"] },
-
-  "balatro": { nombre: "Balatro", anio: 2024, desarrollador: "LocalThunk", descripcion: "Roguelike de cartas basado en poker.", imagen: "/bala.jpg", rating: 4.5, generos: ["Cartas"], plataformas: ["PC"] },
-
-  "gow": { nombre: "God of War (2018)", anio: 2018, desarrollador: "Santa Monica", descripcion: "Aventura de Kratos en la mitología nórdica.", imagen: "/god.avif", rating: 4.8, generos: ["Acción"], plataformas: ["PS","PC"] },
-
-  "witcher3": { nombre: "The Witcher 3", anio: 2015, desarrollador: "CD Projekt", descripcion: "RPG de mundo abierto con historia profunda.", imagen: "/witcher.jpg", rating: 5.0, generos: ["RPG"], plataformas: ["PC","PS","Xbox"] },
-
-  "sekiro": { nombre: "Sekiro", anio: 2019, desarrollador: "FromSoftware", descripcion: "Acción desafiante con combate de precisión.", imagen: "/sekiro.jpg", rating: 4.8, generos: ["Acción"], plataformas: ["PC","PS","Xbox"] },
-
-  "ds3": { nombre: "Dark Souls 3", anio: 2016, desarrollador: "FromSoftware", descripcion: "RPG oscuro y desafiante.", imagen: "/dark.webp", rating: 4.7, generos: ["RPG"], plataformas: ["PC","PS","Xbox"] },
-
-  "elden-ring": { nombre: "Elden Ring", anio: 2022, desarrollador: "FromSoftware", descripcion: "Soulslike de mundo abierto.", imagen: "/elden.avif", rating: 5.0, generos: ["RPG"], plataformas: ["PC","PS","Xbox"] },
-
-  "re4": { nombre: "Resident Evil 4 Remake", anio: 2023, desarrollador: "Capcom", descripcion: "Remake moderno del clásico survival.", imagen: "/re4.jpg", rating: 4.8, generos: ["Survival"], plataformas: ["PC","PS"] },
-
-  "skyrim": { nombre: "Skyrim", anio: 2011, desarrollador: "Bethesda", descripcion: "RPG abierto lleno de libertad.", imagen: "/skyrim.png", rating: 4.7, generos: ["RPG"], plataformas: ["Todos"] },
-
-  "cuphead": { nombre: "Cuphead", anio: 2017, desarrollador: "Studio MDHR", descripcion: "Run & gun con estética animada.", imagen: "/cuphead.jpg", rating: 4.6, generos: ["Acción"], plataformas: ["PC","Xbox"] },
-
-  "slay": { nombre: "Slay the Spire", anio: 2019, desarrollador: "MegaCrit", descripcion: "Roguelike de cartas estratégico.", imagen: "/slay.avif", rating: 4.7, generos: ["Cartas"], plataformas: ["PC"] },
-
-  "gungeon": { nombre: "Enter the Gungeon", anio: 2016, desarrollador: "Dodge Roll", descripcion: "Roguelike de disparos frenético.", imagen: "/enter.jpg", rating: 4.5, generos: ["Roguelike"], plataformas: ["PC"] },
-
-  "celeste": { nombre: "Celeste", anio: 2018, desarrollador: "Maddy Makes Games", descripcion: "Plataformas preciso y emotivo.", imagen: "/celeste.avif", rating: 4.9, generos: ["Plataformas"], plataformas: ["PC","Switch"] },
-
-  "stanley": { nombre: "The Stanley Parable", anio: 2013, desarrollador: "Galactic Cafe", descripcion: "Narrativa interactiva única.", imagen: "/stanley.jpg", rating: 4.5, generos: ["Narrativo"], plataformas: ["PC"] },
-
-  "deep-rock": { nombre: "Deep Rock Galactic", anio: 2020, desarrollador: "Ghost Ship", descripcion: "Coop de minería espacial.", imagen: "/deep.rock", rating: 4.6, generos: ["Coop"], plataformas: ["PC"] },
-
-  "darkest": { nombre: "Darkest Dungeon", anio: 2016, desarrollador: "Red Hook", descripcion: "RPG oscuro con estrés y estrategia.", imagen: "/dark.jpg", rating: 4.5, generos: ["RPG"], plataformas: ["PC"] },
-
-  "doom": { nombre: "DOOM Eternal", anio: 2020, desarrollador: "id Software", descripcion: "Shooter rápido y agresivo.", imagen: "/doom.avif", rating: 4.7, generos: ["FPS"], plataformas: ["PC"] },
-
-  "fortnite": { nombre: "Fortnite", anio: 2017, desarrollador: "Epic Games", descripcion: "Battle royale popular.", imagen: "/fortnite.jpg", rating: 3.8, generos: ["Battle Royale"], plataformas: ["Todos"] },
-
-  "slime": { nombre: "Slime Rancher", anio: 2017, desarrollador: "Monomi Park", descripcion: "Simulador colorido de slimes.", imagen: "/slime.png", rating: 4.4, generos: ["Simulación"], plataformas: ["PC"] },
-
-  "subnautica": { nombre: "Subnautica", anio: 2018, desarrollador: "Unknown Worlds", descripcion: "Supervivencia submarina.", imagen: "/subnautica.webp", rating: 4.8, generos: ["Survival"], plataformas: ["PC"] },
-
-  "brotato": { nombre: "Brotato", anio: 2023, desarrollador: "Blobfish", descripcion: "Survival shooter caótico.", imagen: "/brotato.jpg", rating: 4.3, generos: ["Roguelike"], plataformas: ["PC"] },
-
-  "minecraft": { nombre: "Minecraft", anio: 2011, desarrollador: "Mojang", descripcion: "Sandbox infinito.", imagen: "/minecraft.jpg", rating: 5.0, generos: ["Sandbox"], plataformas: ["Todos"] },
-
-  "roblox": { nombre: "Roblox", anio: 2006, desarrollador: "Roblox Corp", descripcion: "Plataforma de juegos creados por usuarios.", imagen: "/roblox.jpg", rating: 3.5, generos: ["Sandbox"], plataformas: ["Todos"] },
-
-  "disco": { nombre: "Disco Elysium", anio: 2019, desarrollador: "ZA/UM", descripcion: "RPG narrativo profundo.", imagen: "/disco.webp", rating: 5.0, generos: ["RPG"], plataformas: ["PC"] },
-
-  "hotline": { nombre: "Hotline Miami", anio: 2012, desarrollador: "Dennaton", descripcion: "Acción violenta y rápida.", imagen: "/hotline.jpg", rating: 4.6, generos: ["Acción"], plataformas: ["PC"] },
-
-  "jumpking": { nombre: "Jump King", anio: 2019, desarrollador: "Nexile", descripcion: "Plataformas extremadamente difícil.", imagen: "/jump.webp", rating: 4.0, generos: ["Plataformas"], plataformas: ["PC"] },
-
-  "baldurs": { nombre: "Baldur's Gate 3", anio: 2023, desarrollador: "Larian", descripcion: "RPG basado en decisiones.", imagen: "/baldur.jpeg", rating: 5.0, generos: ["RPG"], plataformas: ["PC","PS5"] },
-
-  "ittakestwo": { nombre: "It Takes Two", anio: 2021, desarrollador: "Hazelight", descripcion: "Aventura cooperativa.", imagen: "/ittakes.webp", rating: 4.7, generos: ["Coop"], plataformas: ["PC","PS"] },
-
-  "overwatch2": { nombre: "Overwatch 2", anio: 2022, desarrollador: "Blizzard", descripcion: "Hero shooter competitivo.", imagen: "/ow2.jpg", rating: 3.7, generos: ["FPS"], plataformas: ["PC"] },
-
-  "zelda": { nombre: "Zelda: Breath of the Wild", anio: 2017, desarrollador: "Nintendo", descripcion: "Exploración libre en mundo abierto.", imagen: "/botw.jpg", rating: 4.9, generos: ["Aventura"], plataformas: ["Switch"] },
-
-  "astrobot": { nombre: "Astro Bot", anio: 2024, desarrollador: "Team Asobi", descripcion: "Plataformas creativo y divertido.", imagen: "/astro.avif", rating: 4.6, generos: ["Plataformas"], plataformas: ["PS5"] }
-} as const;
-
-const { id } = Astro.params as { id: keyof typeof juegos };
-const juego = juegos[id];
-
-if (!juego) return Astro.redirect("/");
-
-const baseRating = juego.rating;
 function getRatingDistribution(avg: number) {
-  // Distribución gaussiana simulada centrada en avg
-  const bars = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+  const bars = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
   return bars.map(star => {
-    const diff = Math.abs(star - avg);
-    const height = Math.max(4, Math.round(80 * Math.exp(-(diff * diff) / 0.6)));
-    return { star, height };
-  });
+    const diff = Math.abs(star - avg)
+    const height = Math.max(4, Math.round(80 * Math.exp(-(diff * diff) / 0.6)))
+    return { star, height }
+  })
 }
-const distribution = getRatingDistribution(baseRating);
-const totalRatings = "197K";
-const totalFans = "42K";
+
+const distribution = getRatingDistribution(baseRating)
 ---
 
 <!DOCTYPE html>
@@ -183,14 +50,13 @@ const totalFans = "42K";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{juego.nombre} — Checkpoint</title>
+  <title>{juego.name} — Checkpoint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- ───── NAVBAR ───── -->
   <nav class="navbar">
     <a href="/" class="logo">
       <span class="logo-icon">◈</span>
@@ -198,68 +64,42 @@ const totalFans = "42K";
     </a>
   </nav>
 
-  <!-- ───── HERO ───── -->
   <div class="hero-wrapper">
-    <div class="hero-bg" style={`background-image: url(${juego.imagen})`}></div>
+    <div class="hero-bg" style={`background-image: url(${juego.image})`}></div>
     <div class="hero-overlay"></div>
   </div>
 
-  <!-- ───── MAIN CONTENT ───── -->
   <main class="main-content">
     <div class="game-card">
-
-      <!-- POSTER -->
       <div class="poster-col">
         <div class="poster-wrap">
-          <img class="poster" src={juego.imagen} alt={juego.nombre} />
-        </div>
-        <div class="poster-stats">
-          <span title="Partidas registradas">🎮 2.8M</span>
-          <span title="Reseñas">{totalRatings} reseñas</span>
-          <span title="Fans">♥ {totalFans}</span>
+          <img class="poster" src={juego.cover || juego.image} alt={juego.name} />
         </div>
         <div class="watch-section">
-          <p class="watch-label">DISPONIBLE EN</p>
-          {juego.plataformas.map(p => (
+          <p class="watch-label">PLATAFORMAS</p>
+          {juego.platforms?.map((p) => (
             <span class="platform-tag">{p}</span>
           ))}
         </div>
       </div>
 
-      <!-- INFO CENTRAL -->
       <div class="info-col">
         <div class="title-row">
-          <h1 class="game-title">{juego.nombre}</h1>
-          <span class="game-year">{juego.anio}</span>
+          <h1 class="game-title">{juego.name}</h1>
+          <span class="game-year">{juego.released?.split('-')[0]}</span>
         </div>
-        <p class="game-dev">Desarrollado por <a href="#" class="dev-link">{juego.desarrollador}</a></p>
-
-        <p class="game-desc">{juego.descripcion}</p>
+        <p class="game-dev">Desarrollado por {juego.developers?.join(', ')}</p>
+        <p class="game-desc">{juego.description}</p>
 
         <div class="genres-row">
-          {juego.generos.map(g => (
-            <a href="#" class="genre-tag">{g}</a>
+          {juego.genres?.map((g) => (
+            <span class="genre-tag">{g}</span>
           ))}
-        </div>
-
-        <!-- TABS -->
-        <div class="tabs">
-          <button class="tab">DETALLES</button>
         </div>
       </div>
 
-      <!-- RATING PANEL -->
       <div class="rating-col">
         <div class="rating-box">
-          <div class="rating-actions">
-          </div>
-
-          <div class="rating-section">
-            <p class="rating-label">PUNTUACIONES</p>
-            <p class="fans-label">{totalFans} FANS</p>
-          </div>
-
-          <!-- Histograma -->
           <div class="histogram">
             {distribution.map(({ star, height }) => (
               <div class="bar-col">
@@ -271,12 +111,6 @@ const totalFans = "42K";
             ))}
           </div>
 
-          <div class="histogram-labels">
-            <span>½</span>
-            <span>5</span>
-          </div>
-
-          <!-- Promedio -->
           <div class="avg-row">
             <div class="stars-display">
               {[1,2,3,4,5].map(s => (
@@ -287,7 +121,6 @@ const totalFans = "42K";
           </div>
         </div>
       </div>
-
     </div>
   </main>
 
