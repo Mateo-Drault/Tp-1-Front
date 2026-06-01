@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://api-tp2-frontend-production.up.railway.app/api";
 
 export default function Reviews({ gameId }) {
   const [reviews, setReviews] = useState([]);
@@ -34,6 +34,12 @@ export default function Reviews({ gameId }) {
 
     if (!token) {
       setError("Debes iniciar sesión");
+      return;
+    }
+
+    // ✅ Validación de comentario vacío
+    if (!newReview.comment.trim()) {
+      setError("El comentario no puede estar vacío");
       return;
     }
 
@@ -99,6 +105,8 @@ export default function Reviews({ gameId }) {
               color: "#cdd9e5",
               border: "1px solid #333",
               borderRadius: "4px",
+              resize: "none",  // ✅ Agregar esto
+              fontFamily: "'DM Sans', sans-serif", // Opcional: para que use la misma font
             }}
           />
 
@@ -119,7 +127,7 @@ export default function Reviews({ gameId }) {
         </form>
       )}
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
         {reviews.map((review) => (
           <div
             key={review.id}
@@ -130,8 +138,7 @@ export default function Reviews({ gameId }) {
               borderLeft: "3px solid #e8c84a",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-              <span style={{ fontWeight: "600" }}>{review.user_id}</span>
+            <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: "8px" }}>
               <span>{"⭐".repeat(review.rating)}</span>
             </div>
             <p style={{ color: "#aaa", fontSize: "14px" }}>{review.comment}</p>

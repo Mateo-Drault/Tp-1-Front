@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://api-tp2-frontend-production.up.railway.app/api";
 
 function Stars({ rating }) {
   return (
