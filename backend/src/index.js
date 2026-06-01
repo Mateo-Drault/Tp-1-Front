@@ -12,7 +12,7 @@ const app = express()
 
 // ← Agregar esto
 app.use(cors({
-  origin: 'http://localhost:4321',
+  origin: 'https://tp-1-front-ivo-el-juego.vercel.app',
   credentials: true
 }))
 
