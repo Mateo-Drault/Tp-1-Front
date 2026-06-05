@@ -1,4 +1,4 @@
-# ◈ Checkpoint
+# ◈ Checkpoint - Abud, Drault,  Fuksman
 
 **Autor:** Mateo Drault — 5to E  
 **Materia:** Frontend  
